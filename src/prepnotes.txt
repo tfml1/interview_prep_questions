@@ -502,6 +502,105 @@ In the code above, we've added a conditional rendering of the ErrorMessage compo
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+HOC- hoc or higher order component
+
+An HOC is a component that takes another component as an argument and returns a new component that "wraps" the original component with additional functionality. Think of it like a container that holds another component and provides additional props or functionality to that component.
+Higher-Order Components (HOC) in React are a way to compose smaller components into larger, more complex components.
+What is a HOC?
+    A HOC is a function that takes a component as an argument and returns a new component.
+    HOCs are useful for code reuse, prop manipulation, and abstracting common behavior between components
+HOCs accept a component and return a new component
+They are useful for reuse and abstraction of common logic
+The wrapped component is rendered inside with its original props
+HOCs are useful for:
+    Authentication/Authorization
+    Loading State
+    Error Handling
+    Layouts (sidebars, modals, etc)
+    Logging/Analytics
+    Caching Data
+
+  Take a component, return a new component
+  Render the wrapped component with original props
+  Useful for code reuse between function components
+
+They promote reuse of common patterns between components
+Using HOCs in React has several advantages:
+    Decoupling: HOCs allow you to decouple a component from its dependencies, making it easier to test and maintain. By wrapping a component in an HOC, you can separate the logic that depends on the component from the component itself.
+    Reusability: HOCs can make components more reusable by providing a way to apply common functionality to multiple components.
+    Modularization: HOCs can help you create more modular code by allowing you to break down a large component into smaller, more manageable pieces.
+    Better debugging: By wrapping a component in an HOC, you can easily debug the component and its dependencies without having to worry about the complexity of the original component
+
+
+-------------------
+To use a HOC with a functional component, you can wrap the functional component with the HOC, just like you would with a class component. Here's an example:
+
+function enhanceWithLoadingIndicator(WrappedComponent) {
+  // This function takes a functional component as an argument
+  // and returns a new functional component that includes a loading indicator
+
+  return function EnhancedComponent({ isLoading, ...props }) {
+    // The EnhancedComponent function takes an object of props,
+    // which includes a boolean isLoading property and any other props
+    // passed down from the parent component
+
+    if (isLoading) {
+      // If isLoading is true, return a span element with the text "Loading..."
+      return <span>Loading...</span>;
+    }
+
+    // If isLoading is false, return the WrappedComponent component
+    // with the passed-down props
+    return <WrappedComponent {...props} />;
+  };
+}
+
+function MyComponent(props) {
+  // This functional component simply returns a span element
+  // with the text "Hello, world!"
+  return <span>Hello, world!</span>;
+}
+
+const LoadingMyComponent = enhanceWithLoadingIndicator(MyComponent);
+
+function App() {
+  // This functional component defines a state variable isLoading
+  // and sets it to false by default
+  const [isLoading, setIsLoading] = React.useState(false);
+
+  // This function sets isLoading to true when the button is clicked
+  const handleClick = () => setIsLoading(true);
+
+  // The App component renders the LoadingMyComponent component
+  // and passes in the isLoading state variable as a prop
+  return (
+    <div>
+      <button onClick={handleClick}>Click me!</button>
+      <LoadingMyComponent isLoading={isLoading} />
+    </div>
+  );
+}
+
+
+
+This code is using a Higher-Order Component (HOC) to enhance a functional component with a loading indicator. Here's a step-by-step breakdown of what the code is doing:
+
+    The first function, enhanceWithLoadingIndicator, is defined. This function takes a functional component, WrappedComponent, as an argument, and returns a new functional component, EnhancedComponent.
+    The EnhancedComponent function takes three arguments: isLoading, props, and WrappedComponent.
+    The isLoading argument is checked. If it's true, the function returns a loading indicator, represented by a span element with the text "Loading...".
+    If isLoading is false, the function returns the WrappedComponent component with the props passed through.
+    The MyComponent function is defined. This function simply returns a span element with the text "Hello, world!".
+    The LoadingMyComponent function is defined by calling the enhanceWithLoadingIndicator function and passing in MyComponent as the WrappedComponent. This creates a new functional component that will display a loading indicator when isLoading is true.
+    The App function is defined. This function uses the useState hook to create a state variable isLoading and sets it to false by default.
+    The App function also defines a button element with an onClick event that sets isLoading to true when clicked.
+    The App function renders the LoadingMyComponent component, passing in the isLoading state variable as a prop.
+
+In summary, this code defines a HOC that adds a loading indicator to a functional component, and then uses that HOC to enhance a simple component with a loading indicator. The App component then uses the enhanced component and displays a loading indicator when the component is loading
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 

@@ -1,0 +1,550 @@
+features of React.js
+vertual dom, component based, unidirectional data flow, jsx
+
+------------------------------------------------------------------------------------
+
+JSX is a syntax extension for JavaScript used in React.js. It allows
+developers to write HTML-like code directly within JavaScript,
+making it easier to create and manipulate React elements. jsx
+
+---------------------------------------------------------------------------------------------
+
+difference between functional components and class components
+Functional components are stateless and are defined as JavaScript
+functions. They are simpler and easier to read, test, and maintain.
+Class components, on the other hand, are defined as ES6 classes and
+have additional management features like lifecycle methods and state
+
+---------------------------------------------------------------------------------------------
+
+The "render" method is a required method in every React Class
+component. It returns a description of what the component should
+render. The render method is responsible for rendering the
+component's JSX or other React components.
+No render method needed for functional component, instead
+the entire component is a function that returns what should be rendered
+
+-----------------------------------------------------------------------------------------------------------
+
+A React element is a lightweight representation of a DOM element. It
+is a plain JavaScript object that describes what should be rendered
+on the screen. React elements are the building blocks of React
+applications.
+
+-----------------------------------------------------------------------------------------------------------
+
+React component is a reusable and self-contained module that
+represents a part of the user interface. It can be a function
+component or a class component. Components encapsulate logic
+and UI, making it easier to develop and maintain complex
+applications.
+
+----------------------------------------------------------------------------------------------------------------------
+
+State is an object that holds data that can change over time in a
+React component. It represents the mutable part of the component
+and can be accessed using this.state. When the state changes, React
+re-renders the component to reflect the updated data.
+
+-----------------------------------------------------------------------------------------------------------------------
+
+Difference between Props and State in React
+Props (short for properties) and state are both used to manage data
+in React components, but they have some differences:
+Props are read-only immutable and are passed from parent components to
+child components like arguments. They are used to pass data down the
+component tree.
+State is mutable and is managed internally within a component.
+It is used to manage data that can change over time within a component.
+
+-----------------------------------------------------------------------------------------------------------------------
+
+Keys are used to give a unique identity to each element in a list
+rendered by React. They help React identify which items have
+changed, been added, or been removed. Keys improve the efficiency
+of list rendering and help maintain component state correctly.
+
+-----------------------------------------------------------------------------------------------------------------------
+
+Virtual DOM is a lightweight copy of the actual DOM maintained
+by React. It is a representation of the UI components and their
+structure. When there are changes in the application state, React
+compares the virtual DOM with the real DOM and efficiently updates
+only the necessary parts, resulting in better performance.
+
+-------------------------------------------------------------------------------------------------------------
+
+Hooks are functions that allow functional components to use
+state and other React features without writing a class, hooks, such as
+useState and useEffect, provide a simpler way to manage
+component state and lifecycle.
+
+-------------------------------------------------------------------------------------------------------------------------
+
+UseEffect hook
+The useEffect hook is used to perform side effects in a React
+component. It allows you to perform actions like data fetching,
+subscriptions, or manually changing the DOM after the component
+has rendered, it basicallyperforms differentoperations based 
+on component lifecycle, it has a dependency array 
+that holds the value that useeffect keeps track of
+It is similar to componentDidMount, componentDidUpdate, and componentWillUnmount combined. 
+It allows you to perform actions like data fetching, subscriptions, or
+manually changing the DOM after the component has rendered.
+
+-------------------------------------------------------------------------------------------------------------------------
+
+The useState hook is used to add state to functional components. It
+returns an array with two elements: the current state value and a
+function to update that value. It enables functional components to
+have state similar to class components.
+
+-------------------------------------------------------------------------------------------------------------------------
+
+Controlled/Uncontrolled component
+React allows us to control whether a component is controlled or uncontrolled 
+through the use of state and props. 
+for example <input> value is controlled by the component state clbk function on its onchange event
+<input type="text" value={statename} onChange={handleChangeClbkFunct} />
+for uncontrollrd, <input ref={inputRef} type="text" /> <button onClick={handleSubmit}>Submit</button>
+const handleSubmit = () => { const value = inputRef.current.value;  }
+Here the input value is not controlled. We access it directly from the DOM node when needed.
+The key difference is -->>
+ controlled component's value is tied to state while
+uncontrolled component's value accessed directly from the DOM
+
+-------------------------------------------------------------------------------------------------------------------------
+
+UseMemo(values) and UseCallback(funct) are used to memoize value/functions in React. It
+returns a memoized version of the value / callback function that only
+changes if one of the dependencies has changed. It helps optimize
+performance by avoiding unnecessary re-rendering of components.
+if you want to prevent a value from being recalculated or a function from being recreated at each render, unless its dependencies have changed, you would use useMemo and useCallback respectively
+..
+-------------------------------------------------------------------------------------------------------------------------
+ usememo, useCallback and useref are used to optimize code bu avoiding unnevessary rendering
+-------------------------------------------------------------------------------------------------------------------------
+
+Prop drilling refers to the process of passing props through multiple
+layers of components in order to reach a deeply nested component
+that needs access to the data. It can make the code more complex
+and lead to less maintainable code. Context API or Redux can be
+used to avoid prop drilling.
+
+-------------------------------------------------------------------------------------------------------------------------
+
+The Context API is a built-in feature of React that provides a way to
+share data between components without explicitly passing it
+through props. It allows you to create a global state accessible to any
+component within a designated context.
+
+-------------------------------------------------------------------------------------------------------------------------
+
+React Router is a popular library used for implementing routing in
+React applications. It allows developers to handle navigation and
+rendering of different components based on the URL. React Router
+provides a declarative way to define routes and nested routes in the
+application.
+
+-------------------------------------------------------------------------------------------------------------------------
+
+Redux is a predictable state container for JavaScript applications. It
+provides a centralized store to manage the state of an application
+and follows a unidirectional data flow. Redux is commonly used with
+React to manage the application's global state., 
+it has a main store that recives reducers frm slice and pass it as global state via <provider>,
+ slice export reducrts to store n actions to components and recives action dispatch n payload to update the store via reducers
+
+-------------------------------------------------------------------------------------------------------------------------
+
+PureComponent-Pure components are React components that implement a
+shouldComponentUpdate method with a shallow prop and state
+comparison. They only re-render when the data they receive or hold
+has changed. Pure components optimize rendering performance by
+preventing unnecessary re-rendering.
+Pure components help optimize re-renders by preventing unnecessary re-renders
+ when props/state are shallow-equal, helping improve performance of components that 
+ render frequently. The key is they only do shallow comparisons, 
+ so aren't suitable if you have nested/complex prop/state values.
+example of a pure component:
+function Person(props) { return <div>Hello, {props.name}!</div> }
+function PersonWithName(props) { return <Person name={props.name} /> }
+In this example, the Person component is a pure component because it takes a name prop and returns a React element without any side effects.
+ The PersonWithName component is also a pure component
+The React.PureComponent class is a base class in React that provides
+a convenient way to optimize performance for class components. It
+implements a shallow prop and state comparison in the
+shouldComponentUpdate method, automatically preventing unnecessary re-renders when the data hasn't changed.
+
+-------------------------------------------------------------------------------------------------------------------------
+
+React Developer Tools extension is a browser extension that
+allows developers to inspect and debug React components. It
+provides a panel that displays the component hierarchy, props, state,
+and other useful information for React applications.
+
+-------------------------------------------------------------------------------------------------------------------------
+
+To Optimize the performance of a React application, you can:
+Use shouldComponentUpdate or PureComponent to prevent unnecessary re-rendering. 
+Implement code splitting and lazy loading to load components only when needed.
+Use memoization techniques such as useMemo and useCallback to avoid expensive computations or unnecessary re-renders., also UseRef
+Implement server-side rendering (SSR) to improve the initial load time and SEO.
+Optimize the size of the bundled JavaScript and CSS files using
+techniques like minification and compression.
+
+usememo/clbk/ref, server side rendering, code splitting n pure funct
+
+-------------------------------------------------------------------------------------------------------------------------
+
+Lifecycle methods in React(mount/update/unmount)
+React has several lifecycle methods, including:
+componentDidMount: Called after the component has been mounted to the DOM.
+componentDidUpdate: Called after the component has been updated and re-rendered.
+componentWillUnmount: Called just before the component is unmounted and destroyed.
+shouldComponentUpdate: Allows optimization by determining whether the component should re-render or not.
+render: Renders the component's JSX or other React components.
+     shouldComponentUpdate and render mainly used for class component
+
+-------------------------------------------------------------------------------------------------------------------------
+
+"dangerouslySetInnerHTML" attribute is used to insert HTML
+content directly into a component. It should be used with caution as
+It is considered dangerous because it opens your app up to XSS (cross-site scripting) attacks.
+function MyComponent() {
+  const htmlString = '<h1>Hello World!</h1>';
+  return (
+    <div dangerouslySetInnerHTML={{__html: htmlString}} />
+      <div dangerouslySetInnerHTML={{ __html: '<p>This is some sample text</p>' }} />
+  )}
+export default MyComponent;
+
+-------------------------------------------------------------------------------------------------------------------------
+
+prevent a component from rendering by returning null or
+false from its render method, you can also use lifecycle
+methods like shouldComponentUpdate or React.memo/useclbk to control
+the re-rendering process. also useref instead of usestate to take input
+dangerouslySetState also prevents unnecessery rerender
+
+-----------------------------------------------------------------------------------------------------------------
+
+The children prop in React allows components to pass JSX elements directly 
+to another component as a "prop". This is useful for composing UI by 
+nesting components inside one another.
+            example1-
+const ParentComponent = (props) => {return( <div> {props.children} </div> )}
+const ChildComponent = () => {return( <div> <h1>Hello World!</h1> </div> )}
+const app = () => { return (
+    <ParentComponent>
+      <ChildComponent />
+    </ParentComponent>  )}
+export default app;
+In this example, we define a ParentComponent that accepts a children prop. We then pass a ChildComponent as a child to the ParentComponent. The ChildComponent renders an heading with the text "Hello World!".
+When we render the app component, the ParentComponent will render the ChildComponent as its child, and the heading will be displayed in the user interface.
+            example2-
+function WelcomeDialog() {
+  return (
+    <Dialog>
+      <h1>Welcome</h1>
+      <p>Thank you for visiting our site!</p>
+    </Dialog>  )}
+function Dialog({ children }) {
+  return (
+    <div className="dialog">
+      <h2>Dialog Box</h2>
+      {children}
+    </div> )}
+Here:
+    WelcomeDialog nests JSX elements inside Dialog
+    Dialog uses {children} to render anything passed to it
+    children acts as a placeholder for nested content
+In React, the children prop is a special prop that allows you to 
+pass child components to a parent component. The children prop is 
+significant because it enables you to create modular, reusable 
+components that can be easily combined to build complex user interfaces.
+
+-----------------------------------------------------------------------------------------------------------------
+
+Update the State of a component, you should never mutate the
+state directly. Instead, use the setState method provided by React. It
+accepts a new state object or a function that returns a new state
+object, and React will merge the changes and trigger a re-render.
+
+-----------------------------------------------------------------------------------------------------------------
+
+"defaultProps" property is used to define default values for props
+in a React component. If a prop is not provided when the
+component is used, the default value specified in defaultProps will
+be used instead.
+first method, u can use UseDefaultProp hook
+import React, { useDefaultProps} from 'react';
+const MyComponent = ({ prop1, prop2 }) => {
+  const { prop1: prop1Default, prop2: prop2Default } = useDefaultProps(
+    { prop1: 'Default value 1',
+      prop2: 'Default value 2',  })
+  return ( <div>
+            <h1>My Component</h1>
+            <p>Prop1: {prop1Default}</p>
+            <p>Prop2: {prop2Default}</p>
+           </div> )}
+export default MyComponent;
+// You can use the MyComponent component like this:
+<MyComponent prop1="Custom value 1" prop2="Custom value 2" />
+The prop1 and prop2 values in the MyComponent component's props object will be Custom value 1 and Custom value 2, respectively. However, if you pass these props without providing a value, the default values defined in defaultProps will be used instead:
+<MyComponent />
+---------------------------------
+another way for default prop-->>
+(create an object and pass it)
+Let's say we're building a simple Button component that displays a message when clicked. We want to set some default properties for the button, such as the text and the color, so that we can use the same component in different parts of our app with consistent behavior.
+Here's an example of how we might define our Button component using default props:
+const Button = ({ text = 'Click me!', color = 'blue' }) => {
+  return ( <button style={{ backgroundColor: color, color: color, padding: '10px', borderRadius: '5px' }}>
+               {text}
+           </button> )}
+export default Button;
+// In this example, we define the Button component as a function that takes an object of properties as its only argument. We use the = operator to assign default values to the text and color properties, so that if a user doesn't provide values for these properties, the component will still display a button with the default text and color.
+// Now, let's say we want to use the Button component in another part of our app, and we want to change the text and color. We can pass in our own values for these properties, like this:
+import Button from './Button';
+const MyButton = () => { return ( <Button text="Click me twice!" color="red" /> )}
+In this example, we're using the Button component and passing in our own values for the text and color properties. However, because we didn't provide any values for these properties in our Button component's default props, the component will still display a button with the default text and color.
+This way, we can easily set default properties for our components and ensure that they have consistent behavior across our app.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Render props is a technique in React where a component accepts a
+function as a prop and uses it to render content. This allows the
+component to share its internal state and logic with the function
+component passed as a prop, enabling code reuse and
+composability.
+---------------------------------
+     example of using "Render Props" in React.
+// We have a Counter component that manages a count state and provides a way to increment it:
+import React, { useState } from "react";
+const Counter = ({ render }) => { // render prop recived frm parent
+  const [count, setCount] = useState(0);
+  const increment = () => { setCount(count + 1) }
+  return ( <div> {render(count, increment)} </div> )}
+export default Counter;
+// Now, we can use this Counter component and pass a function as a render prop to render whatever we want based on the count state and the increment function:
+import Counter from "./Counter";
+const App = () => (
+  <Counter  // using counter component 
+    render={(count, increment) => ( 
+      <div>
+        <p>The count is: {count}</p>
+        <button onClick={increment}>Increment</button>
+      </div> )} />) // count n onclick passed as renderprop to another component 
+export default App;
+In this App component, we are using the Counter component and passing a function as a render prop. This function receives the count state and the increment function, and renders a paragraph and a button. When the button is clicked, the increment function is called, updating the count state in the Counter component
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+The "key" prop is used to provide a unique identifier for each item in
+a list/array of React components. It helps React identify which items have
+changed, been added, or been removed, improving the efficiency of
+list rendering and component updates.
+
+-----------------------------------------------------------------------------------------------------------------
+
+Portals in React provide a way to render children components into a
+different DOM node that exists outside the parent component's
+hierarchy. It allows you to render components at a different position
+in the DOM tree, which can be useful for modals, tooltips, and
+overlays.
+Some key things to know about portals in React:
+    Portals provide a way to escape parent component DOM restriction. Normally React components render into the DOM tree of their parent component. With portals, you can render components into any DOM node.
+    Portals still maintain lifecycle and context with their parent component. Even though a portal renders outside of the parent's DOM hierarchy, it still behaves like a normal React child component. Context and lifecycle methods work as expected.
+    Common uses of portals include dialogs, hovercards, and tooltips. Since these UI elements need to float over other content, portals allow you to render them outside the normal DOM flow.
+    The portal component returns null in the React tree. The children are rendered in a different location.
+    Portals have a first-class API in ReactDOM starting with React 16. Creating a portal looks like:
+            ReactDOM.createPortal(child, container)
+Where child is the component/elements to render and container is the DOM node to render into.
+In summary, portals in React allow you to break out of component restriction and render components in locations outside the parent component hierarchy. Useful for overlays and dialogs.
+
+-----------------------------------------------------------------------------------------------------------------
+
+The "dangerouslySetState" method is used to update the state of a
+React component. It is called directly on the component instance
+and bypasses the usual state update mechanism provided by
+setState. The use of "dangerouslySetState" is discouraged and should
+be avoided in most cases.
+DangerouslySetstate is a React API that allows you to update the state of a component without going through the normal reconciliation process.
+ This can be useful for performance reasons, or when you need to update the state of a component in response to an event that is not directly related to the component's props.
+For example, let's say you have a component that renders a list of items. You could use dangerouslySetstate to update the list of items in response to a user click event. 
+This would be more performant than calling setState directly,
+ because it would avoid the need to re-render the entire component.
+
+-----------------------------------------------------------------------------------------------------------------
+
+Code splitting is a technique used to split a React application's
+JavaScript bundle into smaller chunks. It allows you to load only the
+required code when needed, improving the initial load time and
+reducing the overall bundle size. React.lazy and React.Suspense are
+commonly used for code splitting.
+react-router-dom with React.lazy() and React.loadable() can be used for reducing the initial loading time.
+
+-----------------------------------------------------------------------------------------------------------------
+
+The "Fragment" component is a built-in component in React that
+allows you to group multiple elements together without adding an
+extra DOM node. It is useful when you need to return multiple
+elements from a component's render method without wrapping
+them in a parent element.
+
+-----------------------------------------------------------------------------------------------------------------
+
+In React, form handling typically involves capturing user input,
+managing it with component state, and handling form submission.
+You can use controlled components, where form elements are linked
+to the component state, or use libraries like Formik or React Hook
+Form for advanced form handling. yup and yup resolver for validation
+
+-----------------------------------------------------------------------------------------------------------------
+
+Refs in React are a way to access and interact with DOM elements or
+React components directly. They provide a way to reference and
+manipulate DOM elements outside the usual React component
+hierarchy. Refs should be used sparingly and primarily for interacting
+with non-React libraries or imperative DOM operations.
+
+-----------------------------------------------------------------------------------------------------------------
+
+The componentWillUnmount method is a lifecycle method in React
+that is called just before a component is unmounted and destroyed.
+It provides an opportunity to perform cleanup tasks such as
+canceling network requests, removing event listeners, or clearing
+timers.
+
+-----------------------------------------------------------------------------------------------------------------
+
+Error boundaries are React components that catch JavaScript errors
+in their child component tree and display fallback UI instead of
+crashing the whole application. They help isolate errors and provide
+a better user experience by gracefully handling errors at the
+component level.
+
+-----------------------------------------------------------------------------------------------------------------
+
+The React.StrictMode component is a wrapper component provided
+by React. When used, it enables additional warnings and checks
+during development. It helps highlight potential problems and
+deprecated features in the application code.
+For example, React.StrictMode will throw an error if you try to use a non-existent property on a component, or if you try to use a component that is not exported from a file.
+It is important to note that React.StrictMode is not meant to be 
+used in production code. It is only meant to be used for development purposes. 
+In production code, you should not use React.StrictMode because it will make your application slower.
+
+-----------------------------------------------------------------------------------------------------------------
+
+The setState method is used to update the state of a React
+
+-----------------------------------------------------------------------------------------------------------------
+
+The getDerivedStateFromProps(alternative to useEffect in class component) is a static lifecycle method that is
+called before rendering when new props are received. It allows you
+to update the component's state based on the changes in the
+incoming props. It is rarely needed and can often be replaced with
+other patterns like componentDidUpdate or useState.
+getDerivedStateFromProps is not commonly used. It can make your code harder to understand, maintain, and debug. It often leads to bugs and inconsistencies. In most cases, you should be able to achieve the desired functionality with other lifecycle methods, conditional rendering, or using the componentDidUpdate method.
+In functional components in React, you don't directly use getDerivedStateFromProps 
+like in class components. Instead, you can achieve the same functionality using 
+the useEffect hook.
+
+-----------------------------------------------------------------------------------------------------------------
+
+Difference between an element and a component in React
+In React, an element is a plain JavaScript object that represents a
+single instance of a DOM element or a React component. It is the
+smallest building block in React. A component, on the other hand, is
+a reusable and self-contained module that encapsulates logic and
+UI. Components can be either function components or class
+components.
+
+-----------------------------------------------------------------------------------------------------------------
+
+
+The React.createRef method is used to create a ref object in React.
+Refs are a way to access and interact with DOM elements or React
+components directly. They provide a way to reference and
+manipulate elements outside the usual React component hierarchy.
+ref also used to hold n update value without render unlike state
+
+-----------------------------------------------------------------------------------------------------------------
+
+Conditional rendering in React can be achieved using various
+techniques, such as:
+if-else/logical-and&|or/ternary-operator(?:)
+
+-----------------------------------------------------------------------------------------------------------------
+
+React.cloneElement is a method that creates a new copy of a React element, 
+allowing you to reuse the element or any of its child elements. 
+It's particularly useful when you want to create a new element that's similar to an existing one, 
+but with some changes.
+
+-----------------------------------------------------------------------------------------------------------------
+
+Pass data between components in React-props
+Data can be passed between components in React through props.
+Parent components can pass data to child components by setting
+props on the child component elements.
+import React from 'react';
+function ParentComponent() {
+  return ( <ChildComponent name="John" age={30} /> )}
+function ChildComponent({ name, age }) {
+  return <h1>Hello, {name}! You are {age} years old.</h1> }
+export default ParentComponent;
+ In more complex scenarios,
+you can use techniques like context API, Redux, or libraries like React
+Router to share data across components.
+
+-----------------------------------------------------------------------------------------------------------------
+
+ React.Children:
+The React.Children utility provides a set of methods for working with
+the props.children property of a React component. It allows you to
+iterate, map, and count the children of a component, regardless of
+whether they are single elements or arrays of elements.
+The React.Children component takes two arguments: the first is the child component that we want to add,
+ the second is a function that will be called to render the child component. 
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+The React.createContext method is used to create a new context
+object in React. Context provides a way to share data between
+components without having to pass it explicitly through props. It is
+especially useful when data needs to be accessed by multiple
+components at different levels of the component tree., its like a global state management
+
+-----------------------------------------------------------------------------------------------------------------
+
+In React, you can handle events by providing event handlers as props
+to elements. Event handlers are functions that are executed when a
+specific event occurs, such as a button click or a form submission.
+React uses synthetic events that wrap the native browser events and
+provide consistent behavior across different browsers.
+
+-----------------------------------------------------------------------------------------------------------------
+
+The componentDidCatch method is a lifecycle method in React that
+is called when an error occurs within a component's child tree. It
+allows the component to catch the error and handle it gracefully by
+displaying an error boundary or a fallback UI. basically used for error handling
+
+-----------------------------------------------------------------------------------------------------------------
+
+lazy loading, react.loadable n react.suspend used for code splitting n optimiation
+
+-----------------------------------------------------------------------------------------------------------------
+
+Difference between useState and useReducer hooks
+useState is a hook used to manage state in functional components,
+providing a way to add local state to a component. useReducer, on
+the other hand, is a hook that provides a more powerful state
+management solution for complex state logic. It is based on the
+concept of a reducer function and actions.
+
+-----------------------------------------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------------------------------------

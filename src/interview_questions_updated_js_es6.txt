@@ -5,9 +5,6 @@ A language that was originally designed to build dynamic web pages may now be ru
 
 After HTML and CSS, JavaScript is the third biggest web technology. JavaScript is a scripting language that may be used to construct online and mobile apps, web servers, games, and more. JavaScript is an object-oriented programming language that is used to generate websites and applications. It was created with the intention of being used in a browser. Even today, the server-side version of JavaScript known as Node.js may be used to create online and mobile apps, real-time applications, online streaming applications, and videogames. Javascript frameworks, often known as inbuilt libraries, may be used to construct desktop and mobile programs. Developers may save a lot of time on monotonous programming jobs by using these code libraries, allowing them to focus on the production work of development.
 
-(sources)
-(https://www.interviewbit.com/javascript-interview-questions/)
-(https://www.interviewbit.com/es6-interview-questions/)
 --------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------
 ---------JavaScript Interview Questions for Freshers--------------------------------
